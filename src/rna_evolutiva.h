@@ -13,55 +13,55 @@ typedef char string[60];
 
 typedef struct tipoLicao
 {
-  int p;                 // proposição P
-  int q;                 // Proposição Q
-  int resultadoEsperado; // Proposição Composta P "E" Q (A Classe)
-  tipoLicao *prox;
+    int p;                 // proposição P
+    int q;                 // Proposição Q
+    int resultadoEsperado; // Proposição Composta P "E" Q (A Classe)
+    tipoLicao *prox;
 } TLicao;
 
 typedef struct tipoIndividuo
 {
-  float genes[MAX_Pesos];
-  int erros;
-  int numero; // numero identificador
-  tipoIndividuo *prox;
+    float genes[MAX_Pesos];
+    int erros;
+    int numero; // numero identificador
+    tipoIndividuo *prox;
 } TIndividuo;
 
 typedef struct tipoSinapse
 {
-  int camada;
-  int neuronio_origem;
-  int neuronio_destino;
-  float peso;
-  tipoSinapse *prox;
+    int camada;
+    int neuronio_origem;
+    int neuronio_destino;
+    float peso;
+    tipoSinapse *prox;
 } TSinapse;
 
 typedef struct tipoNeuronio
 {
-  int neuronio;
-  float soma;
-  float peso;
-  tipoNeuronio *prox;
+    int neuronio;
+    float soma;
+    float peso;
+    tipoNeuronio *prox;
 } TNeuronio;
 
 typedef struct tipoLista
 {
-  FILE *fp; // Arquivo de Saída (Relatório).
-  string objetivo;
-  TLicao *licoes; // Conjunto de lições a serem aprendidas
-  float entradas[MAX_Entradas];
-  TNeuronio *neuronios;
-  TSinapse *pesos;
-  TIndividuo *populacao;
-  TIndividuo *individuoAtual;
-  int totalIndividuos;
-  int Qtd_Populacao;
-  int Qtd_Mutacoes_por_vez;
-  int Total_geracoes;
-  int geracao_atual;
-  int Qtd_Geracoes_para_Mutacoes;
-  float sinapseThreshold;
-  float learningRate;
+    FILE *fp; // Arquivo de Saída (Relatório).
+    string objetivo;
+    TLicao *licoes; // Conjunto de lições a serem aprendidas
+    float entradas[MAX_Entradas];
+    TNeuronio *neuronios;
+    TSinapse *pesos;
+    TIndividuo *populacao;
+    TIndividuo *individuoAtual;
+    int totalIndividuos;
+    int Qtd_Populacao;
+    int Qtd_Mutacoes_por_vez;
+    int Total_geracoes;
+    int geracao_atual;
+    int Qtd_Geracoes_para_Mutacoes;
+    float sinapseThreshold;
+    float learningRate;
 } TLista;
 
 void inicializa(TLista *L);

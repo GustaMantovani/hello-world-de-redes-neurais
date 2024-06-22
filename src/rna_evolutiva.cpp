@@ -1,6 +1,6 @@
 #include "rna_evolutiva.h"
 
-void inicializa(TLista *L)  
+void inicializa(TLista *L)
 {
   int i;
 
@@ -290,7 +290,8 @@ void treinamento(TLista *L)
 
     poda(L);
 
-    if(!totalErros(L) && file_flag){
+    if (!totalErros(L) && file_flag)
+    {
       fprintf(L->fp, "\n\n\t=====| PRIMEIRA GERAÇÃO SEM ERROS: %d |=====\n\n", i + 1);
       file_flag = 0;
     }
