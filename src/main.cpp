@@ -1,6 +1,11 @@
-#include <stdio.h>
+#include "rna_evolutiva.h"
 
-int main (){
-    printf("\nHello, World!\n");
-    return 0;
+TLista lista;
+
+int main()
+{
+  inicializa(&lista);
+  treinamento(&lista);
+  finaliza(&lista);
+  return 0;
 }
