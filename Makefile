@@ -58,6 +58,7 @@ run:
 	./output/bin/rna_evolutiva
 
 debug:
+	make MODE=debug
 	gdb ./output/bin/rna_evolutiva
 
 .PHONY: all clean debug run

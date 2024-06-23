@@ -1,5 +1,10 @@
 #include "rna_evolutiva.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
 void inicializa(TLista *L)
 {
   int i;

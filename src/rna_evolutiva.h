@@ -2,9 +2,6 @@
 #define rna_evolutiva_h
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 
 #define MAX_Entradas 2
 #define MAX_Pesos 6
@@ -69,6 +66,7 @@ void geraIndividuos(TLista *L);
 void geraLicoes(TLista *L);
 void insereLicao(TLista *L, int p, int q, int resultado);
 void insereNeuronio(TLista *L, int neuronio);
+int totalErros(TLista *L);
 void estabelecendoSinapse(TLista *L, int neuronioDe, int neuronioAte, int camada);
 void treinamento(TLista *L);
 void insereIndividuo(TLista *L, TIndividuo *individuo);
@@ -84,6 +82,5 @@ void liberarMemListaPopulacao(TIndividuo *individuoInicial);
 void exibirPopulacao(TLista L);
 void gravarPopulacao(TLista L);
 void finaliza(TLista *L);
-int totalErros(TLista *L);
 
 #endif
