@@ -153,6 +153,7 @@ n5->peso = (n5->soma >= L->sinapseThreshold) ? 1 : 0;
 Neste trecho, a soma ponderada é calculada para cada neurônio e depois a função de ativação é aplicada. A variável `n3->soma` representa o input do neurônio antes da aplicação da função de ativação.
 
 Matematicamente, podemos expressar o somatório do input de um neurônio da seguinte forma (num exemplo de um neurônio recebendo duas sinapses no seu input, assim como acontece na rede neural do projeto):
+
 ![image](./assets/somatorio.png)
 
 #### Neurônios Biológicos
