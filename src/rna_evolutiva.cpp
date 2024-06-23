@@ -77,7 +77,7 @@ void inicializa(TLista *L)
   estabelecendoSinapse(L, 3, 5, 1);
   estabelecendoSinapse(L, 4, 5, 1);
 
-  L->fp = fopen("RNA_EVOLUTIVA_RELATORIO.txt", "w");
+  L->fp = fopen("./output/RNA_EVOLUTIVA_RELATORIO.txt", "w");
 
   fprintf(L->fp, "\n\t\t=====| REDE NEURAL ARTIFICIAL EVOLUTIVA |=====\n\n");
   fprintf(L->fp, "\tOBJETIVO: %s.\n\n\tLicoes:\n", L->objetivo);
@@ -302,7 +302,7 @@ void treinamento(TLista *L)
     }
 
   } // for
-  printf("\n%d\n", i);
+  //printf("\n%d\n", i);
   // Exibindo resultados do terinamento
   printf("\n\n\t\t=====| TERMINADO TREINAMENTO |=====\n\n");
   exibirPopulacao(*L);
@@ -662,8 +662,7 @@ void poda(TLista *L)
   L->totalIndividuos = L->Qtd_Populacao;
 }
 //==============================================================
-void liberarMemListaPopulacao(
-    TIndividuo *individuoInicial)
+void liberarMemListaPopulacao(TIndividuo *individuoInicial)
 { // Libera a memória alocada para todos os
   // indivíduos de uma lista que ficam após
   // uma referêncial inicial
