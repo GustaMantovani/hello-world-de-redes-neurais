@@ -50,14 +50,16 @@ $(OBJ_DIR):
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
-# Limpeza dos arquivos compilados
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR) $(OUTPUT_DIR)/*.txt
 
 run:
+	make clean
+	make MODE=release
 	./output/bin/rna_evolutiva
 
 debug:
+	make clean
 	make MODE=debug
 	gdb ./output/bin/rna_evolutiva
 
