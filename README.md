@@ -124,38 +124,6 @@ void calculaSaida(TListaNeuronios *L, TListaSinapses *S) {
 
 ### Neurônios
 
-A rede é composta por 5 neurônios divididos em 3 camadas. Cada neurônio guarda um valor binário que representa seu estado de estímulo (um neurônio com valor 1 está estimulado, enquanto que com valor 0 está desestimulado), de forma que a calibração e os ajustes de peso se dá nas conexões entre os neurônios. Além disso, os neurônios tem tanto input (por ondem recebem uma sinapse que pode, ou não, estimulá-los) e um output (por onde, caso estimulado, libera uma sinapse). 
-
-Do lado do input, um neurônio pode receber de 0 à n sinapses, de forma que o estado do neurônio (se ele guarda 0 ou 1) é dado a partir de uma condicional: caso o somatório de todas as sinapses recebidas no input, cada uma multiplicada pelo peso da sua respectiva conexão com o neurônio que está recebendo a sinapse, mais um valor de viés, seja maior que a métrica `Sinapse Threshold`, consideramos que a sinapse teve peso o suficiente para estimular o neurônio, então seu estado passa a ser 1; caso isso não seja satisfeito, o neurônio permanece inativo (não estimulado), logo, com valor 0. Em código, isso é implementado da seguinte forma:
-
-```c
-// Calculando sinapses da camada 1
-n3->soma = (neuAtual->peso * peso13) + (neuAtual->prox->peso * peso23);
-n4->soma = (neuAtual->peso * peso14) + (neuAtual->prox->peso * peso24);
-
-// Aplicando a função de ativação (threshold)
-n3->peso = (n3->soma >= L->sinapseThreshold) ? 1 : 0;
-n4->peso = (n4->soma >= L->sinapseThreshold) ? 1 : 0;
-
-// Calculando sinapses da camada 2
-TNeuronio *n5 = n4->prox; // Neurônio 5
-float peso35 = sinAtual->peso;
-sinAtual = sinAtual->prox;
-float peso45 = sinAtual->peso;
-
-// Somatório para o neurônio da camada 2
-n5->soma = (n3->peso * peso35) + (n4->peso * peso45);
-
-// Aplicando a função de ativação (threshold) para o neurônio da camada 2
-n5->peso = (n5->soma >= L->sinapseThreshold) ? 1 : 0;
-```
-
-Neste trecho, a soma ponderada é calculada para cada neurônio e depois a função de ativação é aplicada. A variável `n3->soma` representa o input do neurônio antes da aplicação da função de ativação.
-
-Matematicamente, podemos expressar o somatório do input de um neurônio da seguinte forma (num exemplo de um neurônio recebendo duas sinapses no seu input, assim como acontece na rede neural do projeto):
-
-![image](./assets/somatorio.png)
-
 #### Neurônios Biológicos
 
 ![image](./assets/neuronio.gif)
@@ -202,14 +170,38 @@ No código do projeto, simulamos alguns aspectos dos neurônios biológicos, esp
     n4->peso = (n4->soma >= L->sinapseThreshold) ? 1 : 0;
     ```
 
-#### Comparação
+A rede é composta por 5 neurônios divididos em 3 camadas. Cada neurônio guarda um valor binário que representa seu estado de estímulo (um neurônio com valor 1 está estimulado, enquanto que com valor 0 está desestimulado), de forma que a calibração e os ajustes de peso se dá nas conexões entre os neurônios. Além disso, os neurônios tem tanto input (por ondem recebem uma sinapse que pode, ou não, estimulá-los) e um output (por onde, caso estimulado, libera uma sinapse). 
 
-| **Parte do Neurônio Biológico** | **Simulação Artificial**       | **Função**                         |
-| ------------------------------- | ------------------------------ | ---------------------------------- |
-| Dendritos                       | Entradas ponderadas (weights)  | Recebem sinais de outros neurônios |
-| Corpo Celular (Soma)            | Soma ponderada                 | Integra sinais recebidos           |
-| Axônio                          | Saída após função de ativação  | Transmite sinal a outros neurônios |
-| Potencial de Ação               | Função de ativação (threshold) | Decide se o neurônio dispara       |
+Do lado do input, um neurônio pode receber de 0 à n sinapses, de forma que o estado do neurônio (se ele guarda 0 ou 1) é dado a partir de uma condicional: caso o somatório de todas as sinapses recebidas no input, cada uma multiplicada pelo peso da sua respectiva conexão com o neurônio que está recebendo a sinapse, mais um valor de viés, seja maior que a métrica `Sinapse Threshold`, consideramos que a sinapse teve peso o suficiente para estimular o neurônio, então seu estado passa a ser 1; caso isso não seja satisfeito, o neurônio permanece inativo (não estimulado), logo, com valor 0. Em código, isso é implementado da seguinte forma:
+
+```c
+// Calculando sinapses da camada 1
+n3->soma = (neuAtual->peso * peso13) + (neuAtual->prox->peso * peso23);
+n4->soma = (neuAtual->peso * peso14) + (neuAtual->prox->peso * peso24);
+
+// Aplicando a função de ativação (threshold)
+n3->peso = (n3->soma >= L->sinapseThreshold) ? 1 : 0;
+n4->peso = (n4->soma >= L->sinapseThreshold) ? 1 : 0;
+
+// Calculando sinapses da camada 2
+TNeuronio *n5 = n4->prox; // Neurônio 5
+float peso35 = sinAtual->peso;
+sinAtual = sinAtual->prox;
+float peso45 = sinAtual->peso;
+
+// Somatório para o neurônio da camada 2
+n5->soma = (n3->peso * peso35) + (n4->peso * peso45);
+
+// Aplicando a função de ativação (threshold) para o neurônio da camada 2
+n5->peso = (n5->soma >= L->sinapseThreshold) ? 1 : 0;
+```
+
+Neste trecho, a soma ponderada é calculada para cada neurônio e depois a função de ativação é aplicada. A variável `n3->soma` representa o input do neurônio antes da aplicação da função de ativação.
+
+Matematicamente, podemos expressar o somatório do input de um neurônio da seguinte forma (num exemplo de um neurônio recebendo duas sinapses no seu input, assim como acontece na rede neural do projeto):
+
+![image](./assets/somatorio.png)
+
 
 ### Camadas
 
@@ -253,15 +245,6 @@ No código do projeto, o processo evolutivo é simulado para desenvolver uma red
 3. **Seleção**: Escolha das melhores redes neurais com base na sua aptidão.
 4. **Recombinação e Mutação**: Criação de uma nova geração de redes neurais combinando os melhores indivíduos e introduzindo variação através de mutações.
 5. **Iteração**: Repetição do processo por várias gerações até atingir um critério de parada (por exemplo, uma aptidão satisfatória).
-
-### Comparação dos Processos
-
-| **Evolução Natural** | **Evolução Artificial no Código**               | **Função**                                                                                 |
-| -------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Variação Genética    | Inicialização da População com Pesos Aleatórios | Introduz variação inicial nas características (pesos) das redes neurais.                   |
-| Seleção Natural      | Cálculo da Aptidão (Fitness) e Seleção          | Avalia e escolhe as redes neurais com melhor performance.                                  |
-| Herança              | Recombinação e Mutação                          | Cria novas redes neurais a partir das melhores, introduzindo variação através de mutações. |
-| Adaptação            | Iteração ao Longo de Gerações                   | Melhora a aptidão das redes neurais ao longo do tempo.                                     |
 
 ### Detalhamento do Processo Evolutivo no Código
 
