@@ -90,6 +90,92 @@ void adicionaSinapse(TListaSinapses *L, float peso) {
 }
 ```
 
+### Explicação das Funções da Rede Neural Artificial Evolutiva
+
+#### 1. `void inicializa(TLista *L);`
+
+Essa função inicializa a estrutura `TLista`, que representa a rede neural artificial evolutiva. Ela zera todos os ponteiros e variáveis da estrutura, preparando-a para o uso.
+
+#### 2. `void geraIndividuos(TLista *L);`
+
+Gera a população inicial de indivíduos da rede neural. Cada indivíduo pode representar uma solução ou um agente dentro do contexto da rede neural evolutiva.
+
+#### 3. `void geraLicoes(TLista *L);`
+
+Gera as lições que serão usadas para treinar os indivíduos. Essas lições provavelmente contêm dados de entrada e saída esperada.
+
+#### 4. `void insereLicao(TLista *L, int p, int q, int resultado);`
+
+Insere uma nova lição na estrutura `TLista`. `p` e `q` representam as entradas e `resultado` é a saída esperada para essa combinação de entradas.
+
+#### 5. `void insereNeuronio(TLista *L, int neuronio);`
+
+Adiciona um neurônio à estrutura da rede neural dentro da lista `L`. Isso pode fazer parte da configuração da topologia da rede.
+
+#### 6. `int totalErros(TLista *L);`
+
+Calcula e retorna o número total de erros cometidos pela rede neural ao comparar suas saídas com as saídas esperadas das lições.
+
+#### 7. `void estabelecendoSinapse(TLista *L, int neuronioDe, int neuronioAte, int camada);`
+
+Estabelece uma conexão (sinapse) entre dois neurônios (`neuronioDe` e `neuronioAte`) em uma determinada camada da rede neural.
+
+#### 8. `void treinamento(TLista *L);`
+
+Treina os indivíduos da rede neural usando as lições disponíveis. Isso envolve ajustar os pesos das conexões para minimizar os erros.
+
+#### 9. `void insereIndividuo(TLista *L, TIndividuo *individuo);`
+
+Insere um novo indivíduo na população da estrutura `TLista`. Cada indivíduo representa uma potencial solução dentro da rede neural evolutiva.
+
+#### 10. `void cruzamento(TLista *L);`
+
+Realiza o cruzamento entre indivíduos da população para gerar novos indivíduos. Isso é inspirado na reprodução biológica e visa combinar características de diferentes indivíduos para criar soluções melhores.
+
+#### 11. `void avaliacaoIndividuos(TLista *L);`
+
+Avalia o desempenho de cada indivíduo na população com base nas lições. Isso geralmente envolve calcular uma métrica de fitness ou adequação.
+
+#### 12. `void ordenamentoIndividuos(TLista *L);`
+
+Ordena os indivíduos da população com base em seu desempenho. Isso pode ser usado para selecionar os melhores indivíduos para reprodução ou sobrevivência.
+
+#### 13. `void trocaIndividuos(TIndividuo *a, TIndividuo *b);`
+
+Troca os dados entre dois indivíduos (`a` e `b`). Essa função pode ser usada como parte do processo de ordenamento ou cruzamento.
+
+#### 14. `void promoveMutacoes(TLista *L);`
+
+Promove mutações nos indivíduos da população. As mutações introduzem variações aleatórias que podem ajudar a explorar novas soluções.
+
+#### 15. `int isInVector(int e, int vec[], int len);`
+
+Verifica se um elemento `e` está presente no vetor `vec` de tamanho `len`. Retorna 1 se o elemento estiver presente e 0 caso contrário.
+
+#### 16. `int randomInRange(int min, int max);`
+
+Gera um número aleatório no intervalo `[min, max]`. Essa função é útil para inicializar pesos ou para a seleção aleatória de indivíduos.
+
+#### 17. `void poda(TLista *L);`
+
+Remove os indivíduos menos aptos da população. A poda é usada para manter o tamanho da população gerenciável e focar nos indivíduos mais promissores.
+
+#### 18. `void liberarMemListaPopulacao(TIndividuo *individuoInicial);`
+
+Libera a memória alocada para a população de indivíduos, começando pelo `individuoInicial`. Isso é importante para evitar vazamentos de memória.
+
+#### 19. `void exibirPopulacao(TLista L);`
+
+Exibe as informações sobre a população de indivíduos na estrutura `TLista`. Isso pode ser útil para depuração e análise do estado da população.
+
+#### 20. `void gravarPopulacao(TLista L);`
+
+Salva o estado atual da população em um arquivo ou outra forma de armazenamento persistente. Isso permite continuar o treinamento posteriormente ou analisar o estado da população em diferentes pontos no tempo.
+
+#### 21. `void finaliza(TLista *L);`
+
+Finaliza a estrutura `TLista`, liberando todos os recursos alocados. Isso inclui a memória para a população, neurônios, lições e outros componentes.
+
 #### Utilização das Listas na Rede Neural
 
 Com as listas de neurônios e sinapses inicializadas e preenchidas, podemos utilizá-las para construir a rede neural e realizar cálculos. A estrutura das listas permite percorrer facilmente os neurônios e sinapses, aplicando os cálculos necessários para o treinamento e a avaliação da rede.
